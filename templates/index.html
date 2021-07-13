@@ -1,0 +1,25 @@
+{% include "header.html" %}
+
+    <div class="box" id="heading">
+        <h1>
+            {{ day }}
+        </h1>
+    </div>
+
+    <div class="box">
+            {% for work in works: %}
+                <div class="item">
+                    <input type="checkbox">
+                    <p>{{ work.text }}</p>
+                </div>
+            {% endfor %}
+
+
+        <form class="item" action="{{ url_for('home') }}" method="POST">
+            {{ form.csrf_token }}
+            {{ form.text(size=30, placeholder="New Item", autocomplete="off") }}
+            <button type="submit">+</button>
+        </form>
+    </div>
+
+{% include "footer.html" %}
