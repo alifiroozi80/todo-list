@@ -42,5 +42,14 @@ def home():
     return render_template("index.html", day=week_day, year=year, form=form, works=works)
 
 
+@app.route("/delete", methods=["POST", "GET"])
+def delete():
+    item_id = request.form["checkbox"]
+    item_to_delete = Todos.query.get(item_id)
+    db.session.delete(item_to_delete)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)

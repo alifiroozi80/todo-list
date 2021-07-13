@@ -8,10 +8,12 @@
 
     <div class="box">
             {% for work in works: %}
+            <form action="{{ url_for('delete') }}" method="POST">
                 <div class="item">
-                    <input type="checkbox">
+                    <input type="checkbox" name="checkbox" value="{{ work.id }}" onChange="this.form.submit()">
                     <p>{{ work.text }}</p>
                 </div>
+            </form>
             {% endfor %}
 
 
